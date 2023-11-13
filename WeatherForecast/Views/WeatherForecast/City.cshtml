@@ -1,0 +1,151 @@
+﻿@model WeatherForecast.WeatherForecastModels.City
+
+@{
+    ViewData["Title"] = "City";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap">
+    <style>
+        body {
+            background-color: #5e72e4; 
+            margin: 0;
+            padding: 0;
+            font-family: 'Quicksand', sans-serif; /* Fun and modern font */
+            transition: background-image 0.5s ease-in-out;
+        }
+
+        .container1 {
+            background: linear-gradient(to right, #3498db, #6f7bd4); /* Gradient background */ 
+            
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 50px auto;
+            padding: 30px;
+            max-width: 600px;
+            text-align: center;
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .my-badge-container {
+            margin-bottom: 15px;
+        }
+
+        .my-badge {
+            background-color: #00cec9; /* Turquoise badge color */
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            display: inline-block;
+            font-size: 18px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .my-button {
+            background-color: #fdcb52; /* Yellow button color */
+            border-color: #fdcb52;
+            color: #2d3436;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .my-button:hover {
+                background-color: #fabd4a; /* Darker yellow on hover */
+            }
+
+        h2 {
+            color: #fff; /* White heading color */
+            font-weight: 700;
+        }
+
+        label {
+            color: #fff;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container1">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-6 text-center">
+                <h2 class="mb-4">Forecast for the selected city</h2>
+                <div class="my-badge-container">
+                    <label asp-for="Name"></label>
+                    <span class="my-badge">@Model.Name</span>
+                </div>
+                <div class="my-badge-container">
+                    <label asp-for="Temp"></label>
+                    <span class="my-badge">@Model.Temp °C</span>
+                </div>
+                <div class="my-badge-container">
+                    <label asp-for="Humidity"></label>
+                    <span class="my-badge">@Model.Humidity %</span>
+                </div>
+                <div class="my-badge-container">
+                    <label asp-for="Pressure"></label>
+                    <span class="my-badge">@Model.Pressure Hpa</span>
+                </div>
+                <div class="my-badge-container">
+                    <label asp-for="Wind"></label>
+                    <span class="my-badge">@Model.Wind Km/h</span>
+                </div>
+                <div class="my-badge-container">
+                    <label asp-for="Weather"></label>
+                    <span class="my-badge">@Model.Weather</span>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="col-md-6 text-center">
+                <form method="get">
+                    <button id="myButton" asp-controller="WeatherForecast" asp-action="SearchCity" class="my-button">Return</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var weatherCondition = '@Model.Weather'.toLowerCase(); // Assuming weather condition is a string
+            var container = document.querySelector('.container1');
+            var body = document.body;
+            var button = document.getElementById('myButton');
+            // Check weather condition and set container background color accordingly
+
+            if (weatherCondition.includes('rain')) {
+                container.style.background = "linear-gradient(to left, #95a5a6, #b2babb)"; // Blue for rainy weather
+                body.style.backgroundColor = "#839192";
+            } 
+            else if (weatherCondition.includes('clouds')) {
+                container.style.background = "linear-gradient(to left, #87CEEB, #add8e6)"; // Blue for rainy weather
+                body.style.backgroundColor = "#8AC6D1";
+            }
+            else {
+                container.style.background = "linear-gradient(to right, #ffc11d, #ffd700)"; // Orange for sunny weather
+                button.style.backgroundColor = "#e74c3c";
+                button.style.borderColor = "#e74c3c";
+                button.style.hover = "#c0392b";
+                body.style.backgroundColor = "#ffed36";
+            }
+
+
+        });
+              
+    </script>
+</body>
+</html>
+
