@@ -6,8 +6,6 @@ using WeatherForecast.WeatherForecastModels;
 using WeatherForecast.OpenWeatherMapModels;
 using WeatherForecast.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using WeatherForecast.WeatherForecastModels;
-using WeatherForecast.WeatherForecastModels;
 using WeatherForecast.Models;
 
 namespace WeatherForecast.Controllers

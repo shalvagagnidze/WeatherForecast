@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using RestSharp;
 using Newtonsoft.Json.Linq;
 using Microsoft.VisualBasic;
-using WeatherForecast.OpenWeatherMapModels;
 using WeatherForecast.Repositories;
 using Constants = WeatherForecast.Config.Constants;
 using System.Threading;
